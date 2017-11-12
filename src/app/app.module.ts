@@ -23,6 +23,7 @@ import { appReducer } from './reducers/app.reducer';
     BrowserModule.withServerTransition({appId: 'my-app'}),
     RouterModule.forRoot([
       { path: '', component: ListComponent, pathMatch: 'full'},
+      { path: 'beyond-youtube.github.io/dist/browser', component: ListComponent, pathMatch: 'full'},
       { path: 'about', component: AboutComponent, pathMatch: 'full'},
       { path: 'details/:id', loadChildren: './details/details.module#DetailsModule'},
     ]),
