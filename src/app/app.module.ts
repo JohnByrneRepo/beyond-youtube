@@ -17,6 +17,7 @@ import { appReducer } from './reducers/app.reducer';
   declarations: [
     AppComponent,
     ListComponent,
+    DetailsComponent,
     AboutComponent
   ],
   imports: [
