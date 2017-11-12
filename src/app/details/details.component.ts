@@ -57,15 +57,15 @@ export class DetailsComponent {
   }
 }
 
-@NgModule({
-  declarations: [DetailsComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      { path: '', component: DetailsComponent, pathMatch: 'full' }
-    ]),
-    PipesModule
-  ]
-})
-export class DetailsModule {
-}
+// @NgModule({
+//   declarations: [DetailsComponent],
+//   imports: [
+//     CommonModule,
+//     RouterModule.forChild([
+//       { path: '', component: DetailsComponent, pathMatch: 'full' }
+//     ]),
+//     PipesModule
+//   ]
+// })
+// export class DetailsModule {
+// }

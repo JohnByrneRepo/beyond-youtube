@@ -1,27 +1,19 @@
 webpackJsonp(["main"],{
 
 /***/ "../../../../../src/$$_lazy_route_resource lazy recursive":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var map = {
-	"./details/details.module": [
-		"../../../../../src/app/details/details.module.ts",
-		"details.module"
-	]
-};
-function webpackAsyncContext(req) {
-	var ids = map[req];
-	if(!ids)
-		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return __webpack_require__.e(ids[1]).then(function() {
-		return __webpack_require__(ids[0]);
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
 	});
-};
-webpackAsyncContext.keys = function webpackAsyncContextKeys() {
-	return Object.keys(map);
-};
-webpackAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy recursive";
-module.exports = webpackAsyncContext;
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
@@ -190,15 +182,17 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__list_list_component__ = __webpack_require__("../../../../../src/app/list/list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__about_about_component__ = __webpack_require__("../../../../../src/app/about/about.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pipes_pipes_module__ = __webpack_require__("../../../../../src/app/pipes/pipes.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ngrx_store__ = __webpack_require__("../../../../@ngrx/store/@ngrx/store.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__reducers_app_reducer__ = __webpack_require__("../../../../../src/app/reducers/app.reducer.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__details_details_component__ = __webpack_require__("../../../../../src/app/details/details.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pipes_pipes_module__ = __webpack_require__("../../../../../src/app/pipes/pipes.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ngrx_store__ = __webpack_require__("../../../../@ngrx/store/@ngrx/store.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__reducers_app_reducer__ = __webpack_require__("../../../../../src/app/reducers/app.reducer.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -227,12 +221,13 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */].withServerTransition({ appId: 'my-app' }),
                 __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */].forRoot([
                     { path: '', component: __WEBPACK_IMPORTED_MODULE_8__list_list_component__["a" /* ListComponent */], pathMatch: 'full' },
+                    { path: '**', redirectTo: '', pathMatch: 'full' },
                     { path: 'about', component: __WEBPACK_IMPORTED_MODULE_9__about_about_component__["a" /* AboutComponent */], pathMatch: 'full' },
-                    { path: 'details/:id', loadChildren: './details/details.module#DetailsModule' },
+                    { path: 'details/:id', component: __WEBPACK_IMPORTED_MODULE_10__details_details_component__["a" /* DetailsComponent */], pathMatch: 'full' },
                 ]),
-                __WEBPACK_IMPORTED_MODULE_10__pipes_pipes_module__["a" /* PipesModule */],
-                __WEBPACK_IMPORTED_MODULE_11__ngrx_store__["b" /* StoreModule */].forRoot({
-                    app: __WEBPACK_IMPORTED_MODULE_12__reducers_app_reducer__["a" /* appReducer */],
+                __WEBPACK_IMPORTED_MODULE_11__pipes_pipes_module__["a" /* PipesModule */],
+                __WEBPACK_IMPORTED_MODULE_12__ngrx_store__["b" /* StoreModule */].forRoot({
+                    app: __WEBPACK_IMPORTED_MODULE_13__reducers_app_reducer__["a" /* appReducer */],
                 }),
                 __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_4__angular_forms__["e" /* ReactiveFormsModule */],
@@ -259,6 +254,95 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 // module
 exports.push([module.i, ".app-root h1.page-title {\n  background: #eee;\n  padding: 10px; }\n\n.app-root div.return-to-listing {\n  background: #f00;\n  padding: 12px;\n  height: 12px;\n  width: 100%;\n  cursor: pointer; }\n  .app-root div.return-to-listing a {\n    color: #fff; }\n\n.app-root div.page-links {\n  background: #f00;\n  padding: 10px;\n  width: 100%; }\n  .app-root div.page-links a.page-link {\n    padding: 0px 10px;\n    color: #fff;\n    font-size: 14px; }\n    .app-root div.page-links a.page-link.active-link {\n      font-weight: 700;\n      border-bottom: 2px solid white;\n      padding-bottom: 8px; }\n  .app-root div.page-links mat-form-field {\n    float: right;\n    padding-right: 28px;\n    display: inherit;\n    position: relative;\n    bottom: 10px; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/details/details.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DetailsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_youtube_service__ = __webpack_require__("../../../../../src/app/services/youtube.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngrx_store__ = __webpack_require__("../../../../@ngrx/store/@ngrx/store.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__actions_app_actions__ = __webpack_require__("../../../../../src/app/actions/app.actions.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var DetailsComponent = (function () {
+    function DetailsComponent(youtubeService, route, store) {
+        this.youtubeService = youtubeService;
+        this.route = route;
+        this.store = store;
+        this.app = this.store.select('app');
+    }
+    DetailsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.youtubeService.getVideoById(params['id'])
+                .subscribe(function (video) {
+                return _this.video = video;
+            });
+        });
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_4__actions_app_actions__["d" /* SetNavbarStatus */]('HIDDEN'));
+    };
+    DetailsComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'details-view',
+            template: "\n    <div *ngIf=\"video\">\n      <div class=\"details\">\n        <div class=\"video-container\">\n          <div class=\"video\">\n            <iframe width=\"560\" height=\"349\" [src]=\"video.id | sanitizeUrl\"></iframe>\n          </div>\n        </div>\n        <div class=\"details-container\">\n          <h2 class=\"title\">{{ video.snippet.title }}</h2>\n          <h3 class=\"published-at\">{{ video.snippet.publishedAt | formatDate }}</h3>\n          <h5 class=\"description\">{{ video.snippet.description }}</h5>\n        </div>\n      </div>\n    </div>\n  ",
+            providers: [__WEBPACK_IMPORTED_MODULE_2__services_youtube_service__["a" /* YoutubeService */]],
+            styles: [__webpack_require__("../../../../../src/app/details/details.scss")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_youtube_service__["a" /* YoutubeService */],
+            __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */],
+            __WEBPACK_IMPORTED_MODULE_3__ngrx_store__["a" /* Store */]])
+    ], DetailsComponent);
+    return DetailsComponent;
+}());
+
+// @NgModule({
+//   declarations: [DetailsComponent],
+//   imports: [
+//     CommonModule,
+//     RouterModule.forChild([
+//       { path: '', component: DetailsComponent, pathMatch: 'full' }
+//     ]),
+//     PipesModule
+//   ]
+// })
+// export class DetailsModule {
+// } 
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/details/details.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".details {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  margin-top: 10px;\n  padding-left: 10px;\n  width: 100%; }\n  .details .video-container {\n    width: 50%; }\n    .details .video-container .video {\n      position: relative;\n      padding-bottom: 56.25%;\n      /* 16:9 */\n      padding-top: 25px;\n      height: 0; }\n      .details .video-container .video iframe {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%; }\n  .details .details-container {\n    width: 50%; }\n    .details .details-container h2.title {\n      padding: 0px 10px;\n      margin-bottom: 8px; }\n    .details .details-container h3.published-at {\n      color: #555;\n      padding: 0 10px;\n      margin-bottom: 20px; }\n    .details .details-container h5.description {\n      color: #999;\n      padding: 0 10px;\n      margin-bottom: 20px;\n      display: block;\n      /* Fallback for non-webkit */\n      display: -webkit-box;\n      max-width: 400px;\n      height: 84px;\n      /* Fallback for non-webkit */\n      margin: 0 auto;\n      font-size: 10px;\n      line-height: 1.4;\n      -webkit-line-clamp: 6;\n      -webkit-box-orient: vertical;\n      overflow: hidden;\n      text-overflow: ellipsis;\n      white-space: pre-wrap; }\n\n@media (max-width: 480px) {\n  .details {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-top: 10px;\n    padding-left: 10px; }\n    .details .details-container {\n      -webkit-box-ordinal-group: 2;\n          -ms-flex-order: 1;\n              order: 1;\n      width: 100%; }\n      .details .details-container h2.title {\n        padding: 0px 2px;\n        margin-bottom: 8px; }\n      .details .details-container h3.published-at {\n        color: #555;\n        padding: 0 2px;\n        margin-bottom: 20px; }\n      .details .details-container h5.description {\n        display: none; }\n    .details .video-container {\n      -webkit-box-ordinal-group: 3;\n          -ms-flex-order: 2;\n              order: 2;\n      width: 96%; }\n      .details .video-container .video {\n        position: relative;\n        padding-bottom: 56.25%;\n        /* 16:9 */\n        padding-top: 25px;\n        height: 0; }\n        .details .video-container .video iframe {\n          position: absolute;\n          top: 0;\n          left: 0;\n          width: 100%;\n          height: 100%; } }\n", ""]);
 
 // exports
 

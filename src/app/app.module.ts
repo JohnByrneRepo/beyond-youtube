@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { AboutComponent } from './about/about.component';
+import { DetailsComponent } from './details/details.component';
 import { PipesModule } from './pipes/pipes.module';
 import { StoreModule } from '@ngrx/store';
 import { appReducer } from './reducers/app.reducer';
@@ -23,9 +24,10 @@ import { appReducer } from './reducers/app.reducer';
     BrowserModule.withServerTransition({appId: 'my-app'}),
     RouterModule.forRoot([
       { path: '', component: ListComponent, pathMatch: 'full'},
-      { path: 'beyond-youtube.github.io/dist/browser', component: ListComponent, pathMatch: 'full'},
+      { path: '**', redirectTo: '', pathMatch: 'full' },
       { path: 'about', component: AboutComponent, pathMatch: 'full'},
-      { path: 'details/:id', loadChildren: './details/details.module#DetailsModule'},
+      { path: 'details/:id', component: DetailsComponent, pathMatch: 'full'},
+      // { path: 'details/:id', loadChildren: './details/details.module#DetailsModule'},
     ]),
     PipesModule,
     StoreModule.forRoot({
