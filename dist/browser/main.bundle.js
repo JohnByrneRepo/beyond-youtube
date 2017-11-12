@@ -41,7 +41,7 @@ var AboutComponent = (function () {
     AboutComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'about',
-            template: "\n    <div class=\"about\">\n      A simple universal Angular 4 application that uses the youtube api.\n      The app uses RxJS for Observables and NgRx for redux actions, with a moel and reducer.\n      The code can be found here: <a>http://johnbyrne/universal-angular-5-youtube/</a>\n    </div>\n  ",
+            template: "\n    <div class=\"about\">\n      A simple universal Angular 4 application that uses the youtube api.\n      The app uses RxJS for Observables and NgRx for redux actions, with a model and reducer.\n      The code can be found here: <a>http://johnbyrne/universal-angular-5-youtube/</a>\n    </div>\n  ",
             styles: [__webpack_require__("../../../../../src/app/about/about.scss")]
         }),
         __metadata("design:paramtypes", [])
@@ -169,7 +169,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
-            template: "\n    <div class=\"app-root\">\n      <h1 class=\"page-title\">Beyond Youtube</h1>\n      <div href=\"/\" class=\"return-to-listing\" *ngIf=\"!navbarVisibile\">\n        <a (click)=\"enableNavbar()\" routerLink=\"/\">< Back to list of videos</a>\n      </div>\n      <div class=\"page-links\" *ngIf=\"navbarVisibile\">\n        <a (click)=\"viewList()\" class=\"page-link active-link\" id=\"list-link\">List</a>\n        <a (click)=\"viewAbout()\" class=\"page-link\" id=\"about-link\">About</a>\n        <mat-form-field>\n          <mat-select [(ngModel)]=\"selectedOption\" (ngModelChange)=\"updatePlaylistSelection($event)\">\n            <mat-option *ngFor=\"let playlistName of playlistNames; let i = index\" [value]=\"i\">\n              {{playlistName}}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div *ngIf=\"viewingList\">\n      <router-outlet></router-outlet>\n      </div>\n      <div *ngIf=\"!viewingList\">\n        <div class=\"about\">\n          A simple universal Angular 4 application that uses the youtube api.\n          The app uses RxJS for Observables and NgRx for redux actions, with a moel and reducer.\n          The code can be found here: <a>http://johnbyrne/universal-angular-5-youtube/</a>\n        </div>\n      </div>\n    </div>\n  ",
+            template: "\n    <div class=\"app-root\">\n      <h1 class=\"page-title\">Beyond Youtube</h1>\n      <div href=\"/\" class=\"return-to-listing\" *ngIf=\"!navbarVisibile\">\n        <a (click)=\"enableNavbar()\" routerLink=\"/\">< Back to list of videos</a>\n      </div>\n      <div class=\"page-links\" *ngIf=\"navbarVisibile\">\n        <a (click)=\"viewList()\" class=\"page-link active-link\" id=\"list-link\">List</a>\n        <a (click)=\"viewAbout()\" class=\"page-link\" id=\"about-link\">About</a>\n        <mat-form-field *ngIf=\"viewingList\">\n          <mat-select [(ngModel)]=\"selectedOption\" (ngModelChange)=\"updatePlaylistSelection($event)\">\n            <mat-option *ngFor=\"let playlistName of playlistNames; let i = index\" [value]=\"i\">\n              {{playlistName}}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div *ngIf=\"viewingList\">\n      <router-outlet></router-outlet>\n      </div>\n      <div *ngIf=\"!viewingList\">\n        <div class=\"about\">\n          A simple universal Angular 4 application that uses the youtube api.\n          The app uses RxJS for Observables and NgRx for redux actions, with a moel and reducer.\n          The code can be found here: <a>http://johnbyrne/universal-angular-5-youtube/</a>\n        </div>\n      </div>\n    </div>\n  ",
             styles: [__webpack_require__("../../../../../src/app/app.scss")],
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ngrx_store__["a" /* Store */]])
@@ -454,7 +454,7 @@ var ListComponent = (function () {
     ListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'list',
-            template: "\n    <div *ngIf=\"!viewingDetails\">\n      <div class=\"list\">\n        <li *ngFor=\"let video of videos; let idx = index\">\n          <a (click)=\"disableNavbar(video.contentDetails.videoId)\" class=\"listing-image\">\n            <div class=\"thumbnail\">\n              <img src=\"{{ video.snippet.thumbnails.high.url }}\">\n            </div>\n          </a>\n          <div class=\"listing-data\">\n            <a (click)=\"disableNavbar(video.contentDetails.videoId)\">\n              <h2 class=\"title\">{{ video.snippet.title }}</h2>\n            </a>\n            <h3 class=\"published-at\">{{ video.contentDetails.videoPublishedAt | formatDate }}</h3>\n            <h5 class=\"description\">{{ video.snippet.description }}</h5>\n          </div>\n        </li>\n      </div>\n    </div>\n    <div *ngIf=\"viewingDetails\">\n      <div *ngIf=\"video\" class=\"details\">\n        <div class=\"video-container\">\n          <div class=\"video\">\n            <iframe width=\"560\" height=\"349\" [src]=\"video.id | sanitizeUrl\"></iframe>\n          </div>\n        </div>\n        <div class=\"details-container\">\n          <h2 class=\"title\">{{ video.snippet.title }}</h2>\n          <h3 class=\"published-at\">{{ video.snippet.publishedAt | formatDate }}</h3>\n          <h5 class=\"description\">{{ video.snippet.description }}</h5>\n        </div>\n      </div>\n    </div>\n  ",
+            template: "\n    <div *ngIf=\"!viewingDetails\">\n      <div class=\"list\">\n        <li *ngFor=\"let video of videos; let idx = index\">\n          <a (click)=\"disableNavbar(video.contentDetails.videoId)\" class=\"listing-image\">\n            <div class=\"thumbnail\">\n              <img src=\"{{ video.snippet.thumbnails.high.url }}\">\n            </div>\n          </a>\n          <div class=\"listing-data\">\n            <a (click)=\"disableNavbar(video.contentDetails.videoId)\">\n              <h2 class=\"title\">{{ video.snippet.title }}</h2>\n            </a>\n            <h3 class=\"published-at\">{{ video.contentDetails.videoPublishedAt | formatDate }}</h3>\n            <h5 class=\"description\" [innerHTML]=\"video.snippet.description | preserveUrls\"></h5>\n          </div>\n        </li>\n      </div>\n    </div>\n    <div *ngIf=\"viewingDetails\">\n      <div *ngIf=\"video\" class=\"details\">\n        <div class=\"video-container\">\n          <div class=\"video\">\n            <iframe width=\"560\" height=\"349\" [src]=\"video.id | sanitizeUrl\"></iframe>\n          </div>\n        </div>\n        <div class=\"details-container\">\n          <h2 class=\"title\">{{ video.snippet.title }}</h2>\n          <h3 class=\"published-at\">{{ video.snippet.publishedAt | formatDate }}</h3>\n          <h5 class=\"description\" [innerHTML]=\"video.snippet.description | preserveUrls\"></h5>\n        </div>\n      </div>\n    </div>\n  ",
             providers: [__WEBPACK_IMPORTED_MODULE_2__services_youtube_service__["a" /* YoutubeService */]],
             styles: [__webpack_require__("../../../../../src/app/list/list.scss")]
         }),
@@ -478,7 +478,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".list {\n  padding-top: 7px; }\n  .list li {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin-top: 10px;\n    padding-left: 10px; }\n    .list li a.listing-image {\n      width: 50%; }\n      .list li a.listing-image div.thumbnail img {\n        width: 100%; }\n    .list li div.listing-data {\n      width: 50%; }\n      .list li div.listing-data a h2.title {\n        padding: 0px 10px;\n        margin-bottom: 8px; }\n      .list li div.listing-data h3.published-at {\n        color: #555;\n        padding: 0px 10px;\n        margin-bottom: 20px; }\n      .list li div.listing-data h5.description {\n        color: #999;\n        padding: 0 10px;\n        margin-bottom: 20px;\n        display: block;\n        /* Fallback for non-webkit */\n        display: -webkit-box;\n        max-width: 400px;\n        height: 84px;\n        /* Fallback for non-webkit */\n        margin: 0 auto;\n        font-size: 10px;\n        line-height: 1.4;\n        -webkit-line-clamp: 6;\n        -webkit-box-orient: vertical;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: pre-wrap; }\n\n@media (max-width: 480px) {\n  .list li {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-top: 10px;\n    padding-left: 10px; }\n    .list li div.listing-data {\n      -webkit-box-ordinal-group: 2;\n          -ms-flex-order: 1;\n              order: 1;\n      width: 100%; }\n      .list li div.listing-data a h2.title {\n        padding: 0px 0px;\n        margin-bottom: 8px; }\n      .list li div.listing-data h3.published-at {\n        color: #555;\n        padding: 0px 0px;\n        margin-bottom: 5px; }\n      .list li div.listing-data h5.description {\n        display: none; }\n    .list li a.listing-image {\n      -webkit-box-ordinal-group: 3;\n          -ms-flex-order: 2;\n              order: 2;\n      width: 96%; }\n      .list li a.listing-image div.thumbnail img {\n        width: 100%; } }\n\n.details {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  margin-top: 10px;\n  padding-left: 10px;\n  width: 100%; }\n  .details .video-container {\n    width: 50%; }\n    .details .video-container .video {\n      position: relative;\n      padding-bottom: 56.25%;\n      /* 16:9 */\n      padding-top: 25px;\n      height: 0; }\n      .details .video-container .video iframe {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%; }\n  .details .details-container {\n    width: 50%; }\n    .details .details-container h2.title {\n      padding: 0px 10px;\n      margin-bottom: 8px; }\n    .details .details-container h3.published-at {\n      color: #555;\n      padding: 0 10px;\n      margin-bottom: 20px; }\n    .details .details-container h5.description {\n      color: #999;\n      padding: 0 10px;\n      margin-bottom: 20px;\n      display: block;\n      /* Fallback for non-webkit */\n      display: -webkit-box;\n      max-width: 400px;\n      height: 84px;\n      /* Fallback for non-webkit */\n      margin: 0 auto;\n      font-size: 10px;\n      line-height: 1.4;\n      -webkit-line-clamp: 6;\n      -webkit-box-orient: vertical;\n      overflow: hidden;\n      text-overflow: ellipsis;\n      white-space: pre-wrap; }\n\n@media (max-width: 480px) {\n  .details {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-top: 10px;\n    padding-left: 10px; }\n    .details .details-container {\n      -webkit-box-ordinal-group: 2;\n          -ms-flex-order: 1;\n              order: 1;\n      width: 100%; }\n      .details .details-container h2.title {\n        padding: 0px 2px;\n        margin-bottom: 8px; }\n      .details .details-container h3.published-at {\n        color: #555;\n        padding: 0 2px;\n        margin-bottom: 20px; }\n      .details .details-container h5.description {\n        display: none; }\n    .details .video-container {\n      -webkit-box-ordinal-group: 3;\n          -ms-flex-order: 2;\n              order: 2;\n      width: 96%; }\n      .details .video-container .video {\n        position: relative;\n        padding-bottom: 56.25%;\n        /* 16:9 */\n        padding-top: 25px;\n        height: 0; }\n        .details .video-container .video iframe {\n          position: absolute;\n          top: 0;\n          left: 0;\n          width: 100%;\n          height: 100%; } }\n", ""]);
+exports.push([module.i, ".list {\n  padding-top: 7px; }\n  .list li {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin-top: 10px;\n    padding-left: 10px; }\n    .list li a.listing-image {\n      width: 50%; }\n      .list li a.listing-image div.thumbnail img {\n        width: 100%; }\n    .list li div.listing-data {\n      width: 50%; }\n      .list li div.listing-data a h2.title {\n        padding: 0px 10px;\n        margin-bottom: 8px; }\n      .list li div.listing-data h3.published-at {\n        color: #555;\n        padding: 0px 10px;\n        margin-bottom: 20px; }\n      .list li div.listing-data h5.description {\n        color: #999;\n        padding: 0 10px;\n        margin-bottom: 20px;\n        display: block;\n        /* Fallback for non-webkit */\n        display: -webkit-box;\n        max-width: 400px;\n        font-size: 10px; }\n\n@media (max-width: 768px) {\n  li div.listing-data h5.description {\n    height: 84px;\n    /* Fallback for non-webkit */\n    font-size: 10px;\n    line-height: 1.4;\n    -webkit-line-clamp: 6;\n    -webkit-box-orient: vertical;\n    overflow: hidden;\n    text-overflow: ellipsis;\n    white-space: pre-wrap; } }\n\n@media (max-width: 480px) {\n  .list li {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-top: 10px;\n    padding-left: 10px; }\n    .list li div.listing-data {\n      -webkit-box-ordinal-group: 2;\n          -ms-flex-order: 1;\n              order: 1;\n      width: 100%; }\n      .list li div.listing-data a h2.title {\n        padding: 0px 0px;\n        margin-bottom: 8px; }\n      .list li div.listing-data h3.published-at {\n        color: #555;\n        padding: 0px 0px;\n        margin-bottom: 5px; }\n      .list li div.listing-data h5.description {\n        display: none; }\n    .list li a.listing-image {\n      -webkit-box-ordinal-group: 3;\n          -ms-flex-order: 2;\n              order: 2;\n      width: 96%; }\n      .list li a.listing-image div.thumbnail img {\n        width: 100%; } }\n\n.details {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  margin-top: 10px;\n  padding-left: 10px;\n  width: 100%; }\n  .details .video-container {\n    width: 50%; }\n    .details .video-container .video {\n      position: relative;\n      padding-bottom: 56.25%;\n      /* 16:9 */\n      padding-top: 25px;\n      height: 0; }\n      .details .video-container .video iframe {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%; }\n  .details .details-container {\n    width: 50%; }\n    .details .details-container h2.title {\n      padding: 0px 10px;\n      margin-bottom: 8px; }\n    .details .details-container h3.published-at {\n      color: #555;\n      padding: 0 10px;\n      margin-bottom: 20px; }\n    .details .details-container h5.description {\n      color: #999;\n      padding: 0 10px;\n      margin-bottom: 20px;\n      display: block;\n      /* Fallback for non-webkit */\n      display: -webkit-box;\n      margin: 0 auto;\n      font-size: 10px; }\n\n@media (max-width: 480px) {\n  .details {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-top: 10px;\n    padding-left: 10px; }\n    .details .details-container {\n      -webkit-box-ordinal-group: 2;\n          -ms-flex-order: 1;\n              order: 1;\n      width: 100%; }\n      .details .details-container h2.title {\n        padding: 0px 2px;\n        margin-bottom: 8px; }\n      .details .details-container h3.published-at {\n        color: #555;\n        padding: 0 2px;\n        margin-bottom: 20px; }\n      .details .details-container h5.description {\n        display: none; }\n    .details .video-container {\n      -webkit-box-ordinal-group: 3;\n          -ms-flex-order: 2;\n              order: 2;\n      width: 96%; }\n      .details .video-container .video {\n        position: relative;\n        padding-bottom: 56.25%;\n        /* 16:9 */\n        padding-top: 25px;\n        height: 0; }\n        .details .video-container .video iframe {\n          position: absolute;\n          top: 0;\n          left: 0;\n          width: 100%;\n          height: 100%; } }\n", ""]);
 
 // exports
 
@@ -530,8 +530,9 @@ var FormatDatePipe = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PipesModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sanitize_url__ = __webpack_require__("../../../../../src/app/pipes/sanitize-url.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__format_date__ = __webpack_require__("../../../../../src/app/pipes/format-date.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__format_date__ = __webpack_require__("../../../../../src/app/pipes/format-date.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__preserve_urls__ = __webpack_require__("../../../../../src/app/pipes/preserve-urls.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sanitize_url__ = __webpack_require__("../../../../../src/app/pipes/sanitize-url.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -541,23 +542,57 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var PipesModule = (function () {
     function PipesModule() {
     }
     PipesModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_1__sanitize_url__["a" /* SanitizeUrlPipe */],
-                __WEBPACK_IMPORTED_MODULE_2__format_date__["a" /* FormatDatePipe */]
+                __WEBPACK_IMPORTED_MODULE_1__format_date__["a" /* FormatDatePipe */],
+                __WEBPACK_IMPORTED_MODULE_2__preserve_urls__["a" /* PreserveUrlsPipe */],
+                __WEBPACK_IMPORTED_MODULE_3__sanitize_url__["a" /* SanitizeUrlPipe */]
             ],
             imports: [],
             exports: [
-                __WEBPACK_IMPORTED_MODULE_1__sanitize_url__["a" /* SanitizeUrlPipe */],
-                __WEBPACK_IMPORTED_MODULE_2__format_date__["a" /* FormatDatePipe */]
+                __WEBPACK_IMPORTED_MODULE_1__format_date__["a" /* FormatDatePipe */],
+                __WEBPACK_IMPORTED_MODULE_2__preserve_urls__["a" /* PreserveUrlsPipe */],
+                __WEBPACK_IMPORTED_MODULE_3__sanitize_url__["a" /* SanitizeUrlPipe */]
             ]
         })
     ], PipesModule);
     return PipesModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/pipes/preserve-urls.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PreserveUrlsPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var PreserveUrlsPipe = (function () {
+    function PreserveUrlsPipe() {
+    }
+    PreserveUrlsPipe.prototype.transform = function (htmlString) {
+        return htmlString.replace(/(?:(https?\:\/\/[^\s]+))/m, '<a href="$1">$1</a>');
+    };
+    PreserveUrlsPipe = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Pipe */])({
+            name: 'preserveUrls'
+        })
+    ], PreserveUrlsPipe);
+    return PreserveUrlsPipe;
 }());
 
 

@@ -27,7 +27,7 @@ const playlistIdDictionary = {
       <div class="page-links" *ngIf="navbarVisibile">
         <a (click)="viewList()" class="page-link active-link" id="list-link">List</a>
         <a (click)="viewAbout()" class="page-link" id="about-link">About</a>
-        <mat-form-field>
+        <mat-form-field *ngIf="viewingList">
           <mat-select [(ngModel)]="selectedOption" (ngModelChange)="updatePlaylistSelection($event)">
             <mat-option *ngFor="let playlistName of playlistNames; let i = index" [value]="i">
               {{playlistName}}

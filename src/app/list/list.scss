@@ -36,8 +36,17 @@ $lines-to-show: 6;
         display: block; /* Fallback for non-webkit */
         display: -webkit-box;
         max-width: 400px;
+        font-size: $font-size;
+      }
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  li {
+    div.listing-data {
+      h5.description {
         height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
-        margin: 0 auto;
         font-size: $font-size;
         line-height: $line-height;
         -webkit-line-clamp: $lines-to-show;
@@ -130,16 +139,8 @@ $lines-to-show: 6;
       margin-bottom: 20px;
       display: block; /* Fallback for non-webkit */
       display: -webkit-box;
-      max-width: 400px;
-      height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
       margin: 0 auto;
       font-size: $font-size;
-      line-height: $line-height;
-      -webkit-line-clamp: $lines-to-show;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: pre-wrap;
     }
   }
 }
