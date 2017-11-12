@@ -29,7 +29,7 @@ import { appReducer } from './reducers/app.reducer';
       { path: 'about', component: AboutComponent, pathMatch: 'full'},
       { path: 'details/:id', component: DetailsComponent, pathMatch: 'full'},
       // { path: 'details/:id', loadChildren: './details/details.module#DetailsModule'},
-    ]),
+    ], { useHash: true }),
     PipesModule,
     StoreModule.forRoot({
       app: appReducer,

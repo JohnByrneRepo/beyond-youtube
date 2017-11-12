@@ -225,7 +225,7 @@ var AppModule = (function () {
                     { path: '**', redirectTo: '', pathMatch: 'full' },
                     { path: 'about', component: __WEBPACK_IMPORTED_MODULE_9__about_about_component__["a" /* AboutComponent */], pathMatch: 'full' },
                     { path: 'details/:id', component: __WEBPACK_IMPORTED_MODULE_10__details_details_component__["a" /* DetailsComponent */], pathMatch: 'full' },
-                ]),
+                ], { useHash: true }),
                 __WEBPACK_IMPORTED_MODULE_11__pipes_pipes_module__["a" /* PipesModule */],
                 __WEBPACK_IMPORTED_MODULE_12__ngrx_store__["b" /* StoreModule */].forRoot({
                     app: __WEBPACK_IMPORTED_MODULE_13__reducers_app_reducer__["a" /* appReducer */],
