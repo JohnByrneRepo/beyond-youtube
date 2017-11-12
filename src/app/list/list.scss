@@ -37,6 +37,7 @@ $lines-to-show: 6;
         display: -webkit-box;
         max-width: 400px;
         font-size: $font-size;
+        white-space: pre-wrap;
       }
     }
   }
@@ -53,7 +54,6 @@ $lines-to-show: 6;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: pre-wrap;
       }
     }
   }
