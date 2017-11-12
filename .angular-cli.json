@@ -9,8 +9,7 @@
         "outDir": "dist/browser",
         "assets": [
           "assets",
-          "favicon.ico",
-          "Web.Config"
+          "favicon.ico"
         ],
         "index": "index.html",
         "main": "main.ts",
