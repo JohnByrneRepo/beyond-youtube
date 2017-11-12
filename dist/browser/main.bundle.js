@@ -214,6 +214,7 @@ var AppModule = (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__list_list_component__["a" /* ListComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__details_details_component__["a" /* DetailsComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__about_about_component__["a" /* AboutComponent */]
             ],
             imports: [
