@@ -27,9 +27,9 @@ import { appReducer } from './reducers/app.reducer';
       { path: '', component: ListComponent, pathMatch: 'full'},
       { path: '**', redirectTo: '', pathMatch: 'full' },
       { path: 'about', component: AboutComponent, pathMatch: 'full'},
-      { path: 'details/:id', component: DetailsComponent, pathMatch: 'full'},
+      // { path: 'details/:id', component: DetailsComponent, pathMatch: 'full'},
       // { path: 'details/:id', loadChildren: './details/details.module#DetailsModule'},
-    ], { useHash: true }),
+    ]), //, { useHash: true }),
     PipesModule,
     StoreModule.forRoot({
       app: appReducer,

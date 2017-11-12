@@ -141,6 +141,7 @@ var AppComponent = (function () {
         this.navbarVisibile = true;
         this.playlistNames = ['MassiveAttack', 'Portishead'];
         this.selectedOption = 0;
+        this.viewingList = true;
         this.app = this.store.select('app');
     }
     AppComponent.prototype.ngOnInit = function () {
@@ -149,13 +150,26 @@ var AppComponent = (function () {
             _this.navbarVisibile = app.navbarStatus === 'FULL_WIDTH';
         });
     };
+    AppComponent.prototype.enableNavbar = function () {
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_2__actions_app_actions__["d" /* SetNavbarStatus */]('FULL_WIDTH'));
+    };
+    AppComponent.prototype.viewList = function () {
+        this.viewingList = true;
+        document.getElementById('list-link').className += ' active-link';
+        document.getElementById('about-link').classList.remove('active-link');
+    };
+    AppComponent.prototype.viewAbout = function () {
+        this.viewingList = false;
+        document.getElementById('about-link').className += ' active-link';
+        document.getElementById('list-link').classList.remove('active-link');
+    };
     AppComponent.prototype.updatePlaylistSelection = function ($event) {
         this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_2__actions_app_actions__["e" /* SetPlaylistId */](playlistIdDictionary[this.playlistNames[$event]]));
     };
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
-            template: "\n    <div class=\"app-root\">\n      <h1 class=\"page-title\">Beyond Youtube</h1>\n      <div href=\"/\" class=\"return-to-listing\" *ngIf=\"!navbarVisibile\">\n        <a [routerLink]=\"[/]\">< Back to list of videos</a>\n      </div>\n      <div class=\"page-links\" *ngIf=\"navbarVisibile\">\n        <a class=\"page-link\" [routerLink]=\"[/]\" routerLinkActive=\"active-link\" [routerLinkActiveOptions]=\"{ exact: true }\">List</a>\n        <a class=\"page-link\" [routerLink]=\"[/about]\" routerLinkActive=\"active-link\">About</a>\n        <mat-form-field>\n          <mat-select [(ngModel)]=\"selectedOption\" (ngModelChange)=\"updatePlaylistSelection($event)\">\n            <mat-option *ngFor=\"let playlistName of playlistNames; let i = index\" [value]=\"i\">\n              {{playlistName}}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <router-outlet></router-outlet>\n    </div>\n  ",
+            template: "\n    <div class=\"app-root\">\n      <h1 class=\"page-title\">Beyond Youtube</h1>\n      <div href=\"/\" class=\"return-to-listing\" *ngIf=\"!navbarVisibile\">\n        <a (click)=\"enableNavbar()\" routerLink=\"/\">< Back to list of videos</a>\n      </div>\n      <div class=\"page-links\" *ngIf=\"navbarVisibile\">\n        <a (click)=\"viewList()\" class=\"page-link active-link\" id=\"list-link\">List</a>\n        <a (click)=\"viewAbout()\" class=\"page-link\" id=\"about-link\">About</a>\n        <mat-form-field>\n          <mat-select [(ngModel)]=\"selectedOption\" (ngModelChange)=\"updatePlaylistSelection($event)\">\n            <mat-option *ngFor=\"let playlistName of playlistNames; let i = index\" [value]=\"i\">\n              {{playlistName}}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n      </div>\n      <div *ngIf=\"viewingList\">\n      <router-outlet></router-outlet>\n      </div>\n      <div *ngIf=\"!viewingList\">\n        <div class=\"about\">\n          A simple universal Angular 4 application that uses the youtube api.\n          The app uses RxJS for Observables and NgRx for redux actions, with a moel and reducer.\n          The code can be found here: <a>http://johnbyrne/universal-angular-5-youtube/</a>\n        </div>\n      </div>\n    </div>\n  ",
             styles: [__webpack_require__("../../../../../src/app/app.scss")],
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ngrx_store__["a" /* Store */]])
@@ -224,8 +238,7 @@ var AppModule = (function () {
                     { path: '', component: __WEBPACK_IMPORTED_MODULE_8__list_list_component__["a" /* ListComponent */], pathMatch: 'full' },
                     { path: '**', redirectTo: '', pathMatch: 'full' },
                     { path: 'about', component: __WEBPACK_IMPORTED_MODULE_9__about_about_component__["a" /* AboutComponent */], pathMatch: 'full' },
-                    { path: 'details/:id', component: __WEBPACK_IMPORTED_MODULE_10__details_details_component__["a" /* DetailsComponent */], pathMatch: 'full' },
-                ], { useHash: true }),
+                ]),
                 __WEBPACK_IMPORTED_MODULE_11__pipes_pipes_module__["a" /* PipesModule */],
                 __WEBPACK_IMPORTED_MODULE_12__ngrx_store__["b" /* StoreModule */].forRoot({
                     app: __WEBPACK_IMPORTED_MODULE_13__reducers_app_reducer__["a" /* appReducer */],
@@ -254,7 +267,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".app-root h1.page-title {\n  background: #eee;\n  padding: 10px; }\n\n.app-root div.return-to-listing {\n  background: #f00;\n  padding: 12px;\n  height: 12px;\n  width: 100%;\n  cursor: pointer; }\n  .app-root div.return-to-listing a {\n    color: #fff; }\n\n.app-root div.page-links {\n  background: #f00;\n  padding: 10px;\n  width: 100%; }\n  .app-root div.page-links a.page-link {\n    padding: 0px 10px;\n    color: #fff;\n    font-size: 14px; }\n    .app-root div.page-links a.page-link.active-link {\n      font-weight: 700;\n      border-bottom: 2px solid white;\n      padding-bottom: 8px; }\n  .app-root div.page-links mat-form-field {\n    float: right;\n    padding-right: 28px;\n    display: inherit;\n    position: relative;\n    bottom: 10px; }\n", ""]);
+exports.push([module.i, ".app-root h1.page-title {\n  background: #eee;\n  padding: 10px; }\n\n.app-root div.return-to-listing {\n  background: #f00;\n  padding: 12px;\n  height: 12px;\n  width: 100%;\n  cursor: pointer; }\n  .app-root div.return-to-listing a {\n    color: #fff; }\n\n.app-root div.page-links {\n  background: #f00;\n  padding: 10px;\n  width: 100%; }\n  .app-root div.page-links a.page-link {\n    padding: 8px 12px;\n    color: #fff;\n    font-size: 14px; }\n    .app-root div.page-links a.page-link.active-link {\n      font-weight: 700;\n      border-bottom: 2px solid white;\n      padding-bottom: 8px; }\n  .app-root div.page-links mat-form-field {\n    float: right;\n    padding-right: 28px;\n    display: inherit;\n    position: relative;\n    bottom: 10px; }\n\n.about {\n  padding: 10px; }\n", ""]);
 
 // exports
 
@@ -389,6 +402,7 @@ var ListComponent = (function () {
         this.numItems = 3;
         this.pageSize = 3;
         this.playlistId = '';
+        this.viewingDetails = false;
         this.app = this.store.select('app');
     }
     ListComponent.prototype.onWindowScroll = function () {
@@ -397,10 +411,12 @@ var ListComponent = (function () {
         var list = document.getElementsByClassName('list')[0];
         if (list.scrollHeight === list.scrollTop + list.clientHeight) {
             this.numItems += 3;
-            this.youtubeService.getPlaylistById(this.playlistId, this.numItems)
-                .subscribe(function (videos) {
-                return _this.videos = videos;
-            });
+            if (this.numItems <= 10) {
+                this.youtubeService.getPlaylistById(this.playlistId, this.numItems)
+                    .subscribe(function (videos) {
+                    return _this.videos = videos;
+                });
+            }
         }
     };
     ListComponent.prototype.getPlaylist = function () {
@@ -408,15 +424,24 @@ var ListComponent = (function () {
         this.app.subscribe(function (app) {
             _this.playlistId = app.playlistId;
             _this.numItems = _this.pageSize;
+            _this.viewingDetails = app.navbarStatus === "HIDDEN";
             _this.youtubeService.getPlaylistById(app.playlistId, _this.numItems)
                 .subscribe(function (videos) {
                 return _this.videos = videos;
             });
         });
     };
+    ListComponent.prototype.disableNavbar = function (videoId) {
+        var _this = this;
+        this.videoId = videoId;
+        this.viewingDetails = true;
+        this.youtubeService.getVideoById(this.videoId)
+            .subscribe(function (video) {
+            return _this.video = video;
+        });
+        this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_4__actions_app_actions__["d" /* SetNavbarStatus */]('HIDDEN'));
+    };
     ListComponent.prototype.ngOnInit = function () {
-        var newBase = document.createElement('base');
-        newBase.setAttribute('href', '/');
         this.getPlaylist();
         this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_4__actions_app_actions__["d" /* SetNavbarStatus */]('FULL_WIDTH'));
     };
@@ -429,7 +454,7 @@ var ListComponent = (function () {
     ListComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'list',
-            template: "\n    <div class=\"list\">\n      <li *ngFor=\"let video of videos; let idx = index\">\n        <a class=\"listing-image\" [routerLink]=\"['details', video.contentDetails.videoId]\">\n          <div class=\"thumbnail\">\n            <img src=\"{{ video.snippet.thumbnails.high.url }}\">\n          </div>\n        </a>\n        <div class=\"listing-data\">\n          <a [routerLink]=\"['details', video.contentDetails.videoId]\">\n            <h2 class=\"title\">{{ video.snippet.title }}</h2>\n          </a>\n          <h3 class=\"published-at\">{{ video.contentDetails.videoPublishedAt | formatDate }}</h3>\n          <h5 class=\"description\">{{ video.snippet.description }}</h5>\n        </div>\n      </li>\n    </div>\n  ",
+            template: "\n    <div *ngIf=\"!viewingDetails\">\n      <div class=\"list\">\n        <li *ngFor=\"let video of videos; let idx = index\">\n          <a (click)=\"disableNavbar(video.contentDetails.videoId)\" class=\"listing-image\">\n            <div class=\"thumbnail\">\n              <img src=\"{{ video.snippet.thumbnails.high.url }}\">\n            </div>\n          </a>\n          <div class=\"listing-data\">\n            <a (click)=\"disableNavbar(video.contentDetails.videoId)\">\n              <h2 class=\"title\">{{ video.snippet.title }}</h2>\n            </a>\n            <h3 class=\"published-at\">{{ video.contentDetails.videoPublishedAt | formatDate }}</h3>\n            <h5 class=\"description\">{{ video.snippet.description }}</h5>\n          </div>\n        </li>\n      </div>\n    </div>\n    <div *ngIf=\"viewingDetails\">\n      <div *ngIf=\"video\" class=\"details\">\n        <div class=\"video-container\">\n          <div class=\"video\">\n            <iframe width=\"560\" height=\"349\" [src]=\"video.id | sanitizeUrl\"></iframe>\n          </div>\n        </div>\n        <div class=\"details-container\">\n          <h2 class=\"title\">{{ video.snippet.title }}</h2>\n          <h3 class=\"published-at\">{{ video.snippet.publishedAt | formatDate }}</h3>\n          <h5 class=\"description\">{{ video.snippet.description }}</h5>\n        </div>\n      </div>\n    </div>\n  ",
             providers: [__WEBPACK_IMPORTED_MODULE_2__services_youtube_service__["a" /* YoutubeService */]],
             styles: [__webpack_require__("../../../../../src/app/list/list.scss")]
         }),
@@ -453,7 +478,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".list {\n  padding-top: 7px; }\n  .list li {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin-top: 10px;\n    padding-left: 10px; }\n    .list li a.listing-image {\n      width: 50%; }\n      .list li a.listing-image div.thumbnail img {\n        width: 100%; }\n    .list li div.listing-data {\n      width: 50%; }\n      .list li div.listing-data a h2.title {\n        padding: 0px 10px;\n        margin-bottom: 8px; }\n      .list li div.listing-data h3.published-at {\n        color: #555;\n        padding: 0px 10px;\n        margin-bottom: 20px; }\n      .list li div.listing-data h5.description {\n        color: #999;\n        padding: 0 10px;\n        margin-bottom: 20px;\n        display: block;\n        /* Fallback for non-webkit */\n        display: -webkit-box;\n        max-width: 400px;\n        height: 84px;\n        /* Fallback for non-webkit */\n        margin: 0 auto;\n        font-size: 10px;\n        line-height: 1.4;\n        -webkit-line-clamp: 6;\n        -webkit-box-orient: vertical;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: pre-wrap; }\n\n@media (max-width: 480px) {\n  .list li {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-top: 10px;\n    padding-left: 10px; }\n    .list li div.listing-data {\n      -webkit-box-ordinal-group: 2;\n          -ms-flex-order: 1;\n              order: 1;\n      width: 100%; }\n      .list li div.listing-data a h2.title {\n        padding: 0px 0px;\n        margin-bottom: 8px; }\n      .list li div.listing-data h3.published-at {\n        color: #555;\n        padding: 0px 0px;\n        margin-bottom: 5px; }\n      .list li div.listing-data h5.description {\n        display: none; }\n    .list li a.listing-image {\n      -webkit-box-ordinal-group: 3;\n          -ms-flex-order: 2;\n              order: 2;\n      width: 96%; }\n      .list li a.listing-image div.thumbnail img {\n        width: 100%; } }\n", ""]);
+exports.push([module.i, ".list {\n  padding-top: 7px; }\n  .list li {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    margin-top: 10px;\n    padding-left: 10px; }\n    .list li a.listing-image {\n      width: 50%; }\n      .list li a.listing-image div.thumbnail img {\n        width: 100%; }\n    .list li div.listing-data {\n      width: 50%; }\n      .list li div.listing-data a h2.title {\n        padding: 0px 10px;\n        margin-bottom: 8px; }\n      .list li div.listing-data h3.published-at {\n        color: #555;\n        padding: 0px 10px;\n        margin-bottom: 20px; }\n      .list li div.listing-data h5.description {\n        color: #999;\n        padding: 0 10px;\n        margin-bottom: 20px;\n        display: block;\n        /* Fallback for non-webkit */\n        display: -webkit-box;\n        max-width: 400px;\n        height: 84px;\n        /* Fallback for non-webkit */\n        margin: 0 auto;\n        font-size: 10px;\n        line-height: 1.4;\n        -webkit-line-clamp: 6;\n        -webkit-box-orient: vertical;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        white-space: pre-wrap; }\n\n@media (max-width: 480px) {\n  .list li {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-top: 10px;\n    padding-left: 10px; }\n    .list li div.listing-data {\n      -webkit-box-ordinal-group: 2;\n          -ms-flex-order: 1;\n              order: 1;\n      width: 100%; }\n      .list li div.listing-data a h2.title {\n        padding: 0px 0px;\n        margin-bottom: 8px; }\n      .list li div.listing-data h3.published-at {\n        color: #555;\n        padding: 0px 0px;\n        margin-bottom: 5px; }\n      .list li div.listing-data h5.description {\n        display: none; }\n    .list li a.listing-image {\n      -webkit-box-ordinal-group: 3;\n          -ms-flex-order: 2;\n              order: 2;\n      width: 96%; }\n      .list li a.listing-image div.thumbnail img {\n        width: 100%; } }\n\n.details {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  margin-top: 10px;\n  padding-left: 10px;\n  width: 100%; }\n  .details .video-container {\n    width: 50%; }\n    .details .video-container .video {\n      position: relative;\n      padding-bottom: 56.25%;\n      /* 16:9 */\n      padding-top: 25px;\n      height: 0; }\n      .details .video-container .video iframe {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%; }\n  .details .details-container {\n    width: 50%; }\n    .details .details-container h2.title {\n      padding: 0px 10px;\n      margin-bottom: 8px; }\n    .details .details-container h3.published-at {\n      color: #555;\n      padding: 0 10px;\n      margin-bottom: 20px; }\n    .details .details-container h5.description {\n      color: #999;\n      padding: 0 10px;\n      margin-bottom: 20px;\n      display: block;\n      /* Fallback for non-webkit */\n      display: -webkit-box;\n      max-width: 400px;\n      height: 84px;\n      /* Fallback for non-webkit */\n      margin: 0 auto;\n      font-size: 10px;\n      line-height: 1.4;\n      -webkit-line-clamp: 6;\n      -webkit-box-orient: vertical;\n      overflow: hidden;\n      text-overflow: ellipsis;\n      white-space: pre-wrap; }\n\n@media (max-width: 480px) {\n  .details {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    margin-top: 10px;\n    padding-left: 10px; }\n    .details .details-container {\n      -webkit-box-ordinal-group: 2;\n          -ms-flex-order: 1;\n              order: 1;\n      width: 100%; }\n      .details .details-container h2.title {\n        padding: 0px 2px;\n        margin-bottom: 8px; }\n      .details .details-container h3.published-at {\n        color: #555;\n        padding: 0 2px;\n        margin-bottom: 20px; }\n      .details .details-container h5.description {\n        display: none; }\n    .details .video-container {\n      -webkit-box-ordinal-group: 3;\n          -ms-flex-order: 2;\n              order: 2;\n      width: 96%; }\n      .details .video-container .video {\n        position: relative;\n        padding-bottom: 56.25%;\n        /* 16:9 */\n        padding-top: 25px;\n        height: 0; }\n        .details .video-container .video iframe {\n          position: absolute;\n          top: 0;\n          left: 0;\n          width: 100%;\n          height: 100%; } }\n", ""]);
 
 // exports
 
