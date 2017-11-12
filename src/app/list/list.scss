@@ -141,6 +141,7 @@ $lines-to-show: 6;
       display: -webkit-box;
       margin: 0 auto;
       font-size: $font-size;
+      white-space: pre-wrap;
     }
   }
 }
