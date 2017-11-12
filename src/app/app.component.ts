@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { App } from './models/app.model';
 import * as AppActions from './actions/app.actions';
+import { Routes, RouterModule } from '@angular/router';
 
 interface AppState {
   app: App;
@@ -21,11 +22,11 @@ const playlistIdDictionary = {
     <div class="app-root">
       <h1 class="page-title">Beyond Youtube</h1>
       <div href="/" class="return-to-listing" *ngIf="!navbarVisibile">
-        <a routerLink="/">< Back to list of videos</a>
+        <a [routerLink]="[/]">< Back to list of videos</a>
       </div>
       <div class="page-links" *ngIf="navbarVisibile">
-        <a class="page-link" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">List</a>
-        <a class="page-link" routerLink="/about" routerLinkActive="active-link">About</a>
+        <a class="page-link" [routerLink]="[/]" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">List</a>
+        <a class="page-link" [routerLink]="[/about]" routerLinkActive="active-link">About</a>
         <mat-form-field>
           <mat-select [(ngModel)]="selectedOption" (ngModelChange)="updatePlaylistSelection($event)">
             <mat-option *ngFor="let playlistName of playlistNames; let i = index" [value]="i">
