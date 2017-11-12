@@ -48,6 +48,8 @@ export class ListComponent {
     this.app = this.store.select('app');
   }
 
+
+
   @HostListener("window:scroll", [])
   onWindowScroll() {
     let number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -73,6 +75,8 @@ export class ListComponent {
   }
 
   ngOnInit() {
+    var newBase = document.createElement('base');
+    newBase.setAttribute('href', '/');
     this.getPlaylist();
     this.store.dispatch(new AppActions.SetNavbarStatus('FULL_WIDTH'));
   }

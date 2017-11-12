@@ -415,6 +415,8 @@ var ListComponent = (function () {
         });
     };
     ListComponent.prototype.ngOnInit = function () {
+        var newBase = document.createElement('base');
+        newBase.setAttribute('href', '/');
         this.getPlaylist();
         this.store.dispatch(new __WEBPACK_IMPORTED_MODULE_4__actions_app_actions__["d" /* SetNavbarStatus */]('FULL_WIDTH'));
     };
