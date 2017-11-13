@@ -585,7 +585,7 @@ var PreserveUrlsPipe = (function () {
     function PreserveUrlsPipe() {
     }
     PreserveUrlsPipe.prototype.transform = function (htmlString) {
-        return htmlString.replace(/(?:(https?\:\/\/[^\s]+))/m, '<a href="$1">$1</a>');
+        return htmlString.replace(/(?:(https?\:\/\/[^\s]+))/g, '<a href="$1">$1</a>');
     };
     PreserveUrlsPipe = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Pipe */])({
